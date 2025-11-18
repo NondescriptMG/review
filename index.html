@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMG Indus | Movie & Series Reviews Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* 'Inter' font is used by default in Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #4b5563; /* Gray-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* Gray-800 */
+        }
+    </style>
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#0f172a', /* Slate-900 */
+                        'accent': '#14b8a6', /* Teal-500 */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-dark text-gray-100 min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-gray-800/80 backdrop-blur-sm sticky top-0 z-10 shadow-xl border-b border-accent/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo and Channel Name -->
+            <div class="flex items-center space-x-3">
+                <!-- Using the placeholder image you provided earlier -->
+                <img src="https://nondescriptmg.github.io/review/images/logo.png" alt="NMG Indus Logo" class="h-10 w-10 rounded-full object-cover border-2 border-accent">
+                <h1 class="text-3xl font-extrabold tracking-tight text-white">
+                    <span class="text-accent">NMG</span> Indus
+                </h1>
+            </div>
+            
+            <!-- Call to Action Button -->
+            <a href="https://www.youtube.com/@NMGIndus" target="_blank" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-primary-dark bg-accent hover:bg-teal-400 transition duration-300 transform hover:scale-105">
+                Subscribe to Our Channel
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Area: Review Dashboard -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Title Section -->
+        <section class="mb-12 text-center">
+            <h2 class="text-5xl sm:text-6xl font-black text-white leading-tight">
+                AVM Reviews
+            </h2>
+            <p class="mt-4 text-xl text-gray-400">
+                Latest critiques, analysis, and fact-checked reporting on movies and series.
+            </p>
+        </section>
+
+        <!-- Review Grid -->
+        <section id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review cards will be injected here by JavaScript -->
+        </section>
+
+        <p id="no-reviews-message" class="text-center text-gray-500 mt-12 hidden">
+            No reviews published yet. Stay tuned for our latest analysis!
+        </p>
+        
+    </main>
+    
+    <!-- Footer / Social Media Links -->
+    <footer class="bg-gray-800 border-t border-accent/20 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center">
+            
+            <p class="text-gray-400 mb-4 md:mb-0">
+                © <span id="current-year">2025</span> NMG Indus. All rights reserved.
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex space-x-6">
+                <a href="https://www.youtube.com/@NMGIndus" target="_blank" class="text-gray-400 hover:text-red-600 transition duration-300 transform hover:scale-110" aria-label="YouTube">
+                    <i data-lucide="youtube" class="w-6 h-6"></i>
+                </a>
+                <a href="https://www.instagram.com/nondescriptmg/" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:scale-110" aria-label="Instagram">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="https://www.facebook.com/nmgindus/" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300 transform hover:scale-110" aria-label="Facebook">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                </a>
+                <a href="https://x.com/NMGSTUDI0" target="_blank" class="text-gray-400 hover:text-black hover:bg-white rounded transition duration-300 transform hover:scale-110" aria-label="X (Twitter)">
+                    <i data-lucide="twitter" class="w-6 h-6"></i>
+                </a>
+                <a href="https://discord.gg/rRpMsGbj" target="_blank" class="text-gray-400 hover:text-indigo-500 transition duration-300 transform hover:scale-110" aria-label="Discord">
+                    <i data-lucide="message-square" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Content -->
+    <script>
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // ** IMPORTANT: REPLACE THIS ARRAY WITH YOUR ACTUAL REVIEW DATA **
+        // You would typically fetch this data from a database (like Firestore) or a JSON file.
+        const reviews = [
+            {
+                id: 1,
+                title: 'Dunki - Social Comedy-Drama',
+                summary: 'The review of Dunki scrutinizes its ambitious blend of comedy and social commentary. A powerful message, but execution is inconsistent.',
+                category: 'Movie',
+                date: 'Dec 22, 2025',
+                // This URL should link to the specific review page you generated earlier (e.g., dunki_review.html)
+                reviewUrl: 'dunki_review.html', 
+                // A static image link for the thumbnail (e.g., a movie poster)
+                thumbnailUrl: 'https://placehold.co/600x400/10b981/ffffff?text=Dunki+Review' 
+            },
+            {
+                id: 2,
+                title: 'The Family Man Season 3',
+                summary: 'A detailed analysis of the script and direction of the highly anticipated third season. Does it live up to the hype? Find out here.',
+                category: 'Web Series',
+                date: 'Nov 15, 2025',
+                reviewUrl: 'familyman3_review.html',
+                thumbnailUrl: 'https://placehold.co/600x400/3b82f6/ffffff?text=Family+Man+3+Review'
+            },
+            {
+                id: 3,
+                title: 'Jawan - The Action Spectacle',
+                summary: 'An in-depth look at the action choreography, VFX, and star power that made Jawan a massive box office hit.',
+                category: 'Movie',
+                date: 'Sep 7, 2025',
+                reviewUrl: 'jawan_review.html',
+                thumbnailUrl: 'https://placehold.co/600x400/ef4444/ffffff?text=Jawan+Review'
+            }
+            // Add more review objects here...
+        ];
+
+        function renderReviews() {
+            const grid = document.getElementById('reviews-grid');
+            const noReviewsMessage = document.getElementById('no-reviews-message');
+            grid.innerHTML = ''; // Clear existing content
+
+            if (reviews.length === 0) {
+                noReviewsMessage.classList.remove('hidden');
+                return;
+            }
+
+            reviews.forEach(review => {
+                const card = document.createElement('a');
+                card.href = review.reviewUrl; // Link to the full review page
+                card.className = 'block group bg-gray-800 rounded-xl overflow-hidden shadow-2xl transition duration-300 transform hover:scale-[1.03] hover:shadow-accent/50 border border-gray-700 hover:border-accent';
+                
+                // Card content structure
+                card.innerHTML = `
+                    <!-- Thumbnail -->
+                    <div class="relative overflow-hidden h-48">
+                        <img src="${review.thumbnailUrl}" alt="${review.title} Thumbnail" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-accent text-primary-dark text-xs font-bold rounded-full">${review.category}</span>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-accent transition duration-300">${review.title}</h3>
+                        <p class="mt-2 text-gray-400 text-sm h-12 overflow-hidden">${review.summary}</p>
+                        <div class="mt-4 flex justify-between items-center border-t border-gray-700 pt-4">
+                            <p class="text-sm text-gray-500 flex items-center">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1 text-accent"></i>
+                                ${review.date}
+                            </p>
+                            <span class="text-sm font-semibold text-accent flex items-center">
+                                Read Review 
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition duration-200"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons(); // Re-initialize icons after rendering dynamic content
+        }
+
+        // Run functions on load
+        window.onload = function() {
+            renderReviews();
+        };
+
+    </script>
+</body>
+</html>
+
